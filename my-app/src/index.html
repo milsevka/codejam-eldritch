@@ -10,21 +10,21 @@
 <body>
     <div class="container_home">
        <div class="ancient_container">
-        <div class="ancient_card" style="background-image: url(./assets/Ancients/Cthulthu.png);"></div>
-        <div class="ancient_card" style="background-image: url(./assets/Ancients/ShubNiggurath.png);"></div>
-        <div class="ancient_card" style="background-image: url(./assets/Ancients/IogSothoth.png);"></div>
-        <div class="ancient_card" style="background-image: url(./assets/Ancients/Azathoth.png);"></div>
+        <div class="ancient_card" id="Azathoth" style="background-image: url(./assets/Ancients/Azathoth.png);"></div>
+        <div class="ancient_card" id="Cthulhu"  style="background-image: url(./assets/Ancients/Cthulthu.png);"></div>
+        <div class="ancient_card" id="IogSothoth"  style="background-image: url(./assets/Ancients/IogSothoth.png);"></div>
+        <div class="ancient_card" id="ShubNiggurath"  style="background-image: url(./assets/Ancients/ShubNiggurath.png);"></div> 
        </div>
        <div class="difficulty_container">
-        <div class="difficulty"><p class="tittle-difficulty">Очень легкий</p></div>
-        <div class="difficulty"><p class="tittle-difficulty">Легкий</p></div>
-        <div class="difficulty"><p class="tittle-difficulty">Средний</p></div>
-        <div class="difficulty"><p class="tittle-difficulty">Высокий</p></div>
-        <div class="difficulty"><p class="tittle-difficulty">Очень высокий</p></div>
-        <div class="mix"><p class="tittle-mix">Замешать колоду</p></div>
+        <!-- <div class="difficulty"><p class="tittle-difficulty">Очень легкий</p></div>
+        <div class="difficulty"><p class="tittle-difficulty">Легкий</p></div> -->
+        <div class="difficulty"><p class="tittle-difficulty activeblock">Средний</p></div>
+        <!-- <div class="difficulty"><p class="tittle-difficulty">Высокий</p></div>
+        <div class="difficulty"><p class="tittle-difficulty">Очень высокий</p></div> -->
+        <div class="mix"><p class="tittle-mix activeblock">Замешать колоду</p></div>
        </div>
        <div class="currentCard_container">
-    <div class="current_state">
+    <div class="current_state activeblock">
         <div class="stage_container">
             <span class="stage-text">Первая стадия</span>
             <div class="dots-container">    
@@ -50,7 +50,7 @@
                     </div>
                     </div>
         </div>
-        <div class="desk"></div>
+        <div class="desk activeblock" ></div>
         <div class="last-card"></div>
     </div>
    

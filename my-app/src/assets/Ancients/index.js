@@ -1,13 +1,9 @@
-import azathoth from './Azathoth.png';
-import cthulhu from './Cthulthu.png';
-import iogSothoth from './IogSothoth.png';
-import shubNiggurath from './ShubNiggurath.png';
 
 const ancients = {
-  azathoth,
-  cthulhu,
-  iogSothoth,
-  shubNiggurath
+  azathoth: 'url(./assets/Ancients/Azathoth.png)',
+  cthulhu: 'url(./assets/Ancients/Cthulthu.png)',
+  iogSothoth: 'url(./assets/Ancients/IogSothoth.png)',
+  shubNiggurath: 'url(./assets/Ancients/ShubNiggurath.png)'
 }
 
 export default ancients
