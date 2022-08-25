@@ -65,31 +65,89 @@ function checkCard(nameAnsients, cardElement) {
     let number = Math.floor(Math.random() * (max- min + 1)) + min;
     return number
   }
+  
   while (greenArray.length < numberDot[0] + numberDot[3] + numberDot[6]) { 
-    let greenCard = greenCardsData[getRandomNum(18)];
+    let greenCard = greenCardsData[getRandomNum(17)];
     if (!greenArray.includes(greenCard)) {
       greenArray.push(greenCard);
     }
   }
   while (blueArray.length < numberDot[2] + numberDot[5] + numberDot[8]) { 
-    let blueCard = blueCardsData[getRandomNum(12)];
+    let blueCard = blueCardsData[getRandomNum(11)];
     if (!blueArray.includes(blueCard)) {
       blueArray.push(blueCard);
     }
   }
   while (brownArray.length < numberDot[1] + numberDot[4] + numberDot[7]) { 
-    let brownCard = brownCardsData[getRandomNum(21)];
+    let brownCard = brownCardsData[getRandomNum(20)];
     if (!brownArray.includes(brownCard)) {
       brownArray.push(brownCard);
     }
   }
   let mainArray = [].concat(greenArray, blueArray, brownArray)
-  console.log(mainArray)
+  
+  let firstStageCards = [];
+  // firstStageCards.length = numberDot[0] + numberDot[1] + numberDot[2]
+  let secondStageCards = [];
+  // secondStageCards.length = numberDot[3] + numberDot[4] + numberDot[5]
+  let thirdStageCards = [];
+  // thirdStageCards.length = numberDot[6] + numberDot[7] + numberDot[8]
+  let stageCards = [firstStageCards,secondStageCards,thirdStageCards]
+  // console.log(mainArray)
+  // console.log(firstStageCards)
+  // console.log(secondStageCards)
+  // console.log(thirdStageCards)
+  
+  // while (firstStageCards.length < numberDot[0] + numberDot[1] + numberDot[2]) { 
+  //   let firstCard = greenCardsData[getRandomNum(greenArray.length)];
+  //   if (!firstStageCards.includes(firstCard)) {
+  //     firstStageCards.push(firstCard);
+  //   }
+  // }
+  
+for (let stage = 0; stage < 3; stage++){
+  let i = 0;
+  let length = 0;
+  for (3*stage + i; 3*stage + i < 3*stage + 3; i++){
+    let color;
+    length = length + numberDot[3*stage + i];
+    switch (i) {
+      case 0:
+        color = 'green';
+        break;
+      case 1:
+        color = 'brown';
+        break;
+      case 2:
+        color = 'blue';
+
+    }
+    if(numberDot[3*stage + i] > 0){
+      for (let j = 0; j < mainArray.length; j++){
+        if(mainArray[j].color == color){
+          stageCards[stage].push(mainArray[j]);
+          mainArray.splice(j, 1);
+          j--;
+          if(stageCards[stage].length == length){
+            break;
+          }
+        }
+      }
+    }
+  }
+}
+console.log(stageCards)
  
   desk.addEventListener("click", () => {
-    
-      lastCard.style.backgroundImage = mainArray[getRandomNum(mainArray.length)].cardFace; 
-    
+    if (stageCards[0].length > 0) {
+      lastCard.style.backgroundImage = stageCards[0].shift().cardFace; 
+      if (stageCards[0].length === 0) {
+        stageCards.splice(0,1);
+      }
+    } else {
+      lastCard.classList.add("activeblock"); 
+    }
+
   });
 
 }
