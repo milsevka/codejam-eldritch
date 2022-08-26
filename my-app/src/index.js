@@ -6,7 +6,12 @@ import brownCardsData from "./data/mythicCards/brown/index";
 import greenCardsData from "./data/mythicCards/green/index";
 
 let ancientCardButton = document.querySelector(".ancient_card");
-let checkDifficult = document.querySelector(".tittle-difficulty");
+let checkDifficult = document.querySelectorAll(".tittle-difficulty");
+let difficultyContainer = document.querySelector(".difficulty_container");
+let easy = document.getElementById('easy');
+let normal = document.getElementById('normal');
+let hard = document.getElementById('hard');
+
 let mixButton = document.querySelector(".tittle-mix");
 const dots = document.querySelectorAll(".dot");
 const desk = document.querySelector(".desk");
@@ -32,7 +37,7 @@ function checkCard(nameAnsients, cardElement) {
     .querySelectorAll(".ancient_card")
     .forEach((element) => element.classList.remove("active"));
   cardElement.classList.add("active");
-  checkDifficult.classList.remove("activeblock");
+  // difficultyContainer.classList.remove("activeblock");
   dots[0].textContent = findCards.firstStage.greenCards;
   dots[1].textContent = findCards.firstStage.brownCards;
   dots[2].textContent = findCards.firstStage.blueCards;
@@ -73,9 +78,15 @@ function checkCard(nameAnsients, cardElement) {
 
   while (greenArray.length < numberDot[0] + numberDot[3] + numberDot[6]) {
     let greenCard = greenCardsData[getRandomNum(17)];
+    console.log(greenCard.difficulty)
+    
     if (!greenArray.includes(greenCard)) {
       greenArray.push(greenCard);
     }
+    // if (greenCard.difficulty == 'hard') {
+    //   greenArray.pop(greenCard);
+    // }
+
   }
   while (blueArray.length < numberDot[2] + numberDot[5] + numberDot[8]) {
     let blueCard = blueCardsData[getRandomNum(11)];
@@ -180,19 +191,28 @@ function checkCard(nameAnsients, cardElement) {
       }
     } else {
       lastCard.classList.add("activeblock");
-    }
-
-    
+    } 
   });
-  
- 
 }
 
+// checkDifficult.addEventListener("click", () => {
+//   checkDifficult.classList.add("active");
+//   mixButton.classList.remove("activeblock");
+// });
 
-checkDifficult.addEventListener("click", () => {
-  checkDifficult.classList.add("active");
-  mixButton.classList.remove("activeblock");
+difficultyContainer.addEventListener('click', (event) => {
+  let target = event.target;
+  if(target.classList.contains('tittle-difficulty')) {
+    for(let i = 0; i < checkDifficult.length; i++) {
+      checkDifficult[i].classList.remove('active');
+    }
+    // вероятно здесб написать функцию для реализации разных уровней сложности
+    target.classList.add('active');
+    mixButton.classList.remove("activeblock");
+  }
 });
+
+
 mixButton.addEventListener("click", () => {
   mixButton.classList.add("active");
   currentState.classList.remove("activeblock");
